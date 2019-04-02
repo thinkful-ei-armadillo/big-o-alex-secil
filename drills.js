@@ -1,3 +1,4 @@
+'use strict';
 // 1.Big 0
 // O(1) - time does not change no matter the # of people
 // O(n) - you need go with each individual, operations # depends on the #
@@ -135,3 +136,30 @@ function stringSplitter(string, sep) {
 
 // Iterative: O(N), run-time changes based on string length since we're going over each letter.
 // Recursive: O(log(N)), it splits the string into sections and finds any seperators in it. Run-time is based on how many seperators, NOT how long the string is.
+
+function fibonacci(num){
+  let result=[];
+  for(let i=1; i<=num; i++){
+    if(i === 1) result.push(1);
+    else if(i === 2) result.push(1);
+    else result.push(result[i-3]+result[i-2]);
+  }
+  return result;
+}
+
+// console.log(fibonacci(5));
+// Iterative: O(N), linear because it needs to go on each element within the loop
+// Recursive: O(N), linear as it needs to grab the value of the items, item by item.
+
+function factorial(num){
+  let result=1;
+  for (let i=2; i<=num; i++){
+    result *= i;
+  }
+  return result;
+}
+
+// console.log(factorial(5));
+// Iterativ: O(N), another loop, requires going through each element, run time increases accordingly
+// Recursive: O(N), linear runtime, requires moving through each element until it hits 0. 
+
