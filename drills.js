@@ -29,9 +29,30 @@
 // the function returns prime numbers
 // O(n) - it needs to loop through until it finds whether the # is prime
 // 11. Tower of Hanoi
-let arr= [[arr1], [arr2], [arr3]]
-function hanoi(arr){
-    //base case would be when the order is achieved
-    // 
-
+// let rods = [ [ rod1 ], [ rod2 ], [ rod3 ] ];
+function hanoi(disc, rods){
+  //initialize rods if they don't yet exist.
+  if (!rods) {
+    let startingRod = {
+      id: 1,
+      discs: [],
+    };
+    for (let i = disc; i > 0; i--) {
+      startingRod.discs.push(i);
+    }
+    rods = [startingRod, { id: 2, discs: [], }, { id: 3, discs: [], }];
+  }
+  //works by rotating the order of the rods to move the appropriate disc.
+  //continues until there are no discs left to move.
+  const [source, extra, destination] = rods;
+  if (disc > 0) {
+    hanoi(disc - 1, [source, destination, extra]);
+    const movedDisc = source.discs.pop();
+    destination.discs.push(movedDisc);
+    console.log(rods.sort((a,b) => { return a.id < b.id ? -1 : 1; }));
+    console.log(`Moved disc ${disc} to rod ${destination.id}`);
+    hanoi(disc - 1, [extra, source, destination]);
+  }
 }
+
+hanoi(5);
